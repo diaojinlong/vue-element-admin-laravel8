@@ -3,6 +3,6 @@
 
 
 #安装运行页面效果
-![image](image/1-登录.png)
+![image](image/login.png)
 
 
