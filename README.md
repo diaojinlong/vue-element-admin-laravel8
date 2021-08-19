@@ -6,3 +6,10 @@
 ![image](image/login.png)
 
 
+#laravel安装
+1.复制跟目录.env.example文件为.env
+2.编辑.env中的数据库配置
+3.命令行运行：composer install
+4.命令行运行：php artisan key:generate
+5.命令行运行：php artisan migrate
+6.命令行运行：php artisan db:seed
