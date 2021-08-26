@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseModel extends Model
 {
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+
     public static function page($model)
     {
         $limit = request()->input('limit', 20);
@@ -19,5 +25,10 @@ class BaseModel extends Model
         );
         unset($res);
         return $data;
+    }
+    
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 }

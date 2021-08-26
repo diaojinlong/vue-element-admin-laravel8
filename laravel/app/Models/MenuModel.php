@@ -8,11 +8,6 @@ class MenuModel extends BaseModel
     protected $table = 'menu';
 
 
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
-
     // 存储列表数据
     public $listData = [];
 

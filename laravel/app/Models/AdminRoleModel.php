@@ -7,10 +7,6 @@ class AdminRoleModel extends BaseModel
     //表名
     protected $table = 'admin_role';
 
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
 
     /**
      * 获取用户角色名称

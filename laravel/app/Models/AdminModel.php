@@ -18,11 +18,6 @@ class AdminModel extends BaseModel
     //存储管理员权限的redis键
     private $adminPermissionRedisKey = 'admin:permission:';
 
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
-
 
     /**
      * 依据用户名查询用户
