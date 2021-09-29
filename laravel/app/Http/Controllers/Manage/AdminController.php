@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Manage\AdminPostRequest;
 use App\Models\AdminModel;
 use App\Models\AdminRoleModel;
 use App\Models\BaseModel;
@@ -112,7 +113,7 @@ class AdminController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function add(Request $request)
+    public function add(AdminPostRequest $request)
     {
         $username = $request->input('username', '');
         $phone = (string)$request->input('phone', '');
@@ -120,10 +121,6 @@ class AdminController extends Controller
         $name = $request->input('name', '');
         $status = $request->input('status', 1);
         $role = (array)$request->input('role', []);
-        $count = AdminModel::where('username', $username)->count();
-        if ($count > 0) {
-            return error('用户名重复');
-        }
         $date = format_time(time());
         $model = new AdminModel();
         $model->username = $username;
@@ -167,7 +164,7 @@ class AdminController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit(Request $request)
+    public function edit(AdminPostRequest $request)
     {
         $id = $request->input('id', 0);
         if ($id === 1) {
@@ -182,10 +179,6 @@ class AdminController extends Controller
         $model = AdminModel::where('id', $id)->first();
         if (empty($model)) {
             return error('用户不存在');
-        }
-        $count = AdminModel::where('id', '!=', $id)->where('username', $username)->count();
-        if ($count > 0) {
-            return error('用户名重复');
         }
         $model->username = $username;
         $model->phone = $phone;
