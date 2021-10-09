@@ -20,7 +20,7 @@ class BaseModel extends Model
             'total' => $res['total'],
             'page' => $res['current_page'],
             'limit' => intval($res['per_page']),
-            'page_count' => $res['to'],
+            'page_count' => $res['last_page'],
             'items' => $res['data']
         );
         unset($res);
