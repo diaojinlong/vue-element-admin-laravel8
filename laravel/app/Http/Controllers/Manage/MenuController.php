@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\Http\Controllers\Controller;
 use App\Models\MenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class MenuController extends Controller
+class MenuController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->model = new MenuModel();
+    }
+
     /**
      * 获取权限菜单列表
      * @param Request $request
@@ -28,10 +33,10 @@ class MenuController extends Controller
      */
     public function add(Request $request)
     {
-        $name = $request->input('name', '');
-        $api = $request->input('api', '');
-        $sort = $request->input('sort', 50);
-        $parentId = $request->input('parent_id', 0);
+        $name = (string)$request->input('name', '');
+        $api = (string)$request->input('api', '');
+        $sort = (integer)$request->input('sort', 50);
+        $parentId = (integer)$request->input('parent_id', 0);
         $model = new MenuModel();
         $model->name = $name;
         $model->api = $api;
@@ -57,10 +62,10 @@ class MenuController extends Controller
      */
     public function edit(Request $request)
     {
-        $id = $request->input('id', '');
-        $name = $request->input('name', '');
-        $api = $request->input('api', '');
-        $sort = $request->input('sort', 50);
+        $id = (integer)$request->input('id', '');
+        $name = (string)$request->input('name', '');
+        $api = (string)$request->input('api', '');
+        $sort = (integer)$request->input('sort', 50);
         $model = MenuModel::find($id);
         $model->name = $name;
         $model->api = $api;

@@ -41,7 +41,12 @@
       </el-table-column>
       <el-table-column label="排序" width="150px" align="center">
         <template slot-scope="{ row }">
-          <span>{{ row.sort }}</span>
+          <sort-input
+            :id="row.id"
+            :value="row.sort"
+            :callback-fun="sort"
+            :permission="['menu/edit']"
+          />
         </template>
       </el-table-column>
       <el-table-column
@@ -76,7 +81,7 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="textMap[dialogStatus]" :close-on-click-modal="false" :visible.sync="dialogFormVisible">
       <el-form
         ref="dataForm"
         v-loading="formLoading"
@@ -114,9 +119,13 @@
 </template>
 
 <script>
-import { list, add, details, edit, del } from '@/api/menu'
+import SortInput from '@/components/Sort/Input.vue'
+import { list, add, details, edit, del, sort } from '@/api/menu'
 export default {
   name: 'Menu',
+  components: {
+    SortInput
+  },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -173,6 +182,7 @@ export default {
     this.getList()
   },
   methods: {
+    sort,
     getList() {
       this.listLoading = true
       list({}).then(response => {
