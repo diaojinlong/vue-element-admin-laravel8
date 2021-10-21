@@ -28,7 +28,7 @@ class Auth
         if ($admin['status'] != 1) {
             return error('用户已禁用，请联系管理员！');
         }
-        $request->attributes->add(['admin' => $admin]);
+        $request->attributes->add(['admin' => $admin, 'token'=>$token]);
         return $next($request);
     }
 }
