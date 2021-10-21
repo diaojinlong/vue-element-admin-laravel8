@@ -33,6 +33,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('menu/lists', 'Manage\MenuController@lists')->middleware(['permission', 'manage.log:权限管理-查看']);
     Route::post('menu/add', 'Manage\MenuController@add')->middleware(['permission', 'manage.log:权限管理-新增']);
     Route::post('menu/edit', 'Manage\MenuController@edit')->middleware(['permission', 'manage.log:权限管理-编辑']);
+    Route::post('menu/sort', 'Manage\MenuController@sort')->middleware(['permission', 'manage.log:权限管理-编辑-排序']);
     Route::post('menu/del', 'Manage\MenuController@del')->middleware(['permission', 'manage.log:权限管理-删除']);
 
     Route::get('public/role', 'Manage\PublicController@role');
